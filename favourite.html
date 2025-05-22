@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Favourite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: url('image/bg5.jpg') center/cover no-repeat;
+      padding: 120px 20px 100px 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      position: relative;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(211, 107, 154, 0.6);
+      z-index: 0;
+      filter: blur(4px);
+    }
+    header h1 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.2em;
+      margin: 0;
+    }
+    nav.nav-box {
+      position: relative;
+      margin: 30px auto 0 auto;
+      display: inline-flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 12px 28px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(211, 107, 154, 0.35);
+      z-index: 2;
+    }
+    nav.nav-box a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background-color: rgba(211, 107, 154, 0.65);
+      transition: background-color 0.3s ease;
+    }
+    nav.nav-box a:hover {
+      background-color: #a83e6f;
+      color: #ffe4e1;
+    }
+
+    .favourite-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      gap: 40px;
+    }
+    .favourite-section h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2em;
+      text-align: center;
+      color: #a83e6f;
+      margin-bottom: 20px;
+    }
+
+    .fav-category {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(211,107,154,0.2);
+    }
+
+    .fav-item {
+      background: white;
+      border: 2px solid #d36b9a;
+      border-radius: 16px;
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fav-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .fav-item img {
+      width: 100%;
+      max-width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .fav-item audio {
+      width: 100%;
+      max-width: 200px;
+      margin: 10px 0;
+    }
+
+    .fav-item p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #a83e6f;
+    }
+
+    footer {
+      background-color: #ffd6dd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #7a4669;
+      margin-top: 60px;
+      box-shadow: 0 -2px 5px rgba(211,107,154,0.3);
+    }
+
+    footer .social-icons {
+      margin-top: 10px;
+    }
+
+    footer .social-icons a {
+      margin: 0 12px;
+      color: #d36b9a;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+      color: #a83e6f;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #d36b9a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(211,107,154,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+    }
+
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 25px rgba(168,62,111,0.9);
+      transform: scale(1.05);
+    }
+
+    #scrollTopBtn:hover {
+      background: #a83e6f;
+      box-shadow: 0 12px 30px rgba(168,62,111,1);
+      transform: scale(1.1);
+    }
+
+    #social-clock {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1100;
+    }
+
+    #clock {
+      background: #d36b9a;
+      color: white;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+    }
+
+    .social-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+      text-decoration: none;
+      font-size: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icon.facebook { background: #3b5998; }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.instagram { background: #e4405f; }
+    .social-icon.tiktok { background: #0077b5; }
+
+    .social-icon:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MY FAVOURITE THINGS</h1>
+    <nav class="nav-box">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT ME</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="favourite.html">FAVOURITE</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+  </header>
+
+  <section class="favourite-section">
+    <div>
+      <h2>📚 Favourite BOOK</h2>
+      <div class="fav-category">
+        <div class="fav-item"><img src="image/buku1.jpg" alt="Book 1"><p>Keith Aurora: His Fallen Star</p></div>
+        <div class="fav-item"><img src="image/buku2.jpg" alt="Book 2"><p>His Remedy</p></div>
+        <div class="fav-item"><img src="image/buku3.jpg" alt="Book 3"><p>Untuk Sekali Lagi</p></div>
+        <div class="fav-item"><img src="image/buku4.jpg" alt="Book 4"><p>His Little Wife</p></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>🍜 Favourite FOOD</h2>
+      <div class="fav-category">
+        <div class="fav-item"><img src="image/gambar1.jpg" alt="Food 1"><p>Ayam Gepuk</p></div>
+        <div class="fav-item"><img src="image/gambar2.jpg" alt="Food 2"><p>Burger</p></div>
+        <div class="fav-item"><img src="image/gambar3.jpg" alt="Food 3"><p>Spagetti Aglio Olio</p></div>
+        <div class="fav-item"><img src="image/gambar4.jpg" alt="Food 4"><p>Brownies</p></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>🎧 Favourite SONG</h2>
+      <div class="fav-category">
+        <div class="fav-item">
+          <img src="image/mangu.jpg" alt="Mangu Cover">
+          <audio controls>
+            <source src="audio/song1.mp3" type="audio/mpeg">
+          </audio>
+          <p>Mangu (Fourtwnty)</p>
+        </div>
+        <div class="fav-item">
+          <img src="image/bunga maaf.jpg" alt="Bunga Maaf Cover">
+          <audio controls>
+            <source src="audio/song2.mp3" type="audio/mpeg">
+          </audio>
+          <p>Bunga Maaf (The Lantis)</p>
+        </div>
+        <div class="fav-item">
+          <img src="image/gelora asmara.jpg" alt="Gelora Asmara Cover">
+          <audio controls>
+            <source src="audio/song3.mp3" type="audio/mpeg">
+          </audio>
+          <p>Gelora Asmara (Derby)</p>
+        </div>
+        <div class="fav-item">
+          <img src="image/wildflower.jpg" alt="Wildflower Cover">
+          <audio controls>
+            <source src="audio/song4.mp3" type="audio/mpeg">
+          </audio>
+          <p>Wildflower (Billie Eilish)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="social-clock">
+    <div id="clock"></div>
+    <a href="https://www.facebook.com/share/16JvW1c2SA/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/nrlmiraaa4?t=oIiUersapnwfP5vV6MqV7Q&s=09" target="_blank" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/nrlamirahhhh?igsh=MWM1NnZ6a3BmaXd2eQ==" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@namirazzzz?_t=ZS-8wV0RT7lpoG&_r=1" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NURUL AMIRAH ZULKIFLI. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const strTime = [
+        hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0'),
+        seconds.toString().padStart(2, '0')
+      ].join(':') + ' ' + ampm;
+      document.getElementById('clock').textContent = strTime;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>

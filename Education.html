@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: url('image/bg4.jpg') center/cover no-repeat;
+      padding: 120px 20px 100px 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: visible;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(211, 107, 154, 0.6);
+      z-index: 0;
+      filter: blur(4px);
+    }
+    header h1 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.2em;
+      margin: 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+    /* Kotak untuk nav */
+    nav.nav-box {
+      position: relative;
+      margin: 30px auto 0 auto;
+      display: inline-flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 12px 28px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(211, 107, 154, 0.35);
+      z-index: 2;
+    }
+    nav.nav-box a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background-color: rgba(211, 107, 154, 0.65);
+      box-shadow: 0 4px 8px rgba(211, 107, 154, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav.nav-box a:hover {
+      background-color: #a83e6f;
+      color: #ffe4e1;
+      box-shadow: 0 6px 16px rgba(168, 62, 111, 0.7);
+    }
+
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    footer {
+      background-color: #ffd6dd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #7a4669;
+      margin-top: 60px;
+      box-shadow: 0 -2px 5px rgba(211,107,154,0.3);
+    }
+    footer .social-icons {
+      margin-top: 10px;
+    }
+    footer .social-icons a {
+      margin: 0 12px;
+      color: #d36b9a;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    footer .social-icons a:hover {
+      color: #a83e6f;
+    }
+
+    /* Scroll Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #d36b9a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(211,107,154,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 25px rgba(168,62,111,0.9);
+      transform: scale(1.05);
+    }
+    #scrollTopBtn:hover {
+      background: #a83e6f;
+      box-shadow: 0 12px 30px rgba(168,62,111,1);
+      transform: scale(1.1);
+    }
+
+    /* Floating social icons and clock */
+    #social-clock {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1100;
+      font-family: 'Poppins', sans-serif;
+    }
+    #clock {
+      background: #d36b9a;
+      color: white;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+    }
+    .social-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+      text-decoration: none;
+      font-size: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .social-icon.facebook { background: #3b5998; }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.instagram { background: #e4405f; }
+    .social-icon.tiktok { background: #0077b5; }
+    .social-icon:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+    }
+
+    /* Academic section */
+    #academic {
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #ffe4f0, #fff5fa);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    #academic > div {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(211,107,154,0.25);
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    #academic > div:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(211,107,154,0.4);
+    }
+    #academic img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(211,107,154,0.2);
+      transition: transform 0.3s ease;
+    }
+    #academic > div:hover img {
+      transform: scale(1.05);
+    }
+    #academic p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3em;
+      color: #a83e6f;
+      margin: 0 0 8px 0;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(168,62,111,0.4);
+    }
+    #academic span.year {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9em;
+      color: #cc668e;
+      font-weight: 500;
+      text-shadow: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EDUCATION JOURNEY</h1>
+    <nav class="nav-box">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT ME</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="favourite.html">FAVOURITE</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+  </header>
+
+  <!-- Academic Section -->
+  <section id="academic">
+    <div>
+      <img src="image/sksi.jpg" alt="Sekolah Kebangsaan Saujana Indah" />
+      <p>SEKOLAH KEBANGSAAN SAUJANA INDAH</p>
+      <span class="year">2011 - 2016</span>
+    </div>
+    <div>
+      <img src="image/smksi.png" alt="Sekolah Menengah Kebangsaan Saujana Indah" />
+      <p>SEKOLAH MENEGAH KEBANGSAAN SAUJANA INDAH</p>
+      <span class="year">2017 - 2021</span>
+    </div>
+    <div>
+      <img src="image/uitm.jpg" alt="UiTM Permatang Pauh" />
+      <p>UiTM PERMATANG PAUH</p>
+      <span class="year">2022 - 2023</span>
+    </div>
+    <div>
+      <img src="image/uitm.jpg" alt="UiTM Sungai Petani" />
+      <p>UiTM SUNGAI PETANI</p>
+      <span class="year">2023 - 2025</span>
+    </div>
+  </section>
+
+  <div id="social-clock">
+    <div id="clock"></div>
+    <a href="https://www.facebook.com/share/16JvW1c2SA/" target="_blank" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/nrlmiraaa4?t=oIiUersapnwfP5vV6MqV7Q&s=09" target="_blank" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/nrlamirahhhh?igsh=MWM1NnZ6a3BmaXd2eQ==" target="_blank" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@namirazzzz?_t=ZS-8wV0RT7lpoG&_r=1" target="_blank" class="social-icon tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2025 NURUL AMIRAH ZULKIFLI. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const strTime = [
+        hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0'),
+        seconds.toString().padStart(2, '0')
+      ].join(':') + ' ' + ampm;
+      document.getElementById('clock').textContent = strTime;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
+
+

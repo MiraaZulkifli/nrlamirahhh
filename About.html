@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: url('image/bg2.jpg') center/cover no-repeat;
+      padding: 120px 20px 100px 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: visible;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(211, 107, 154, 0.6);
+      z-index: 0;
+      filter: blur(2px);
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.2em;
+      margin: 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    nav.nav-box {
+      position: relative;
+      margin: 30px auto 0 auto;
+      display: inline-flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 12px 28px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(211, 107, 154, 0.35);
+      z-index: 2;
+    }
+
+    nav.nav-box a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background-color: rgba(211, 107, 154, 0.65);
+      box-shadow: 0 4px 8px rgba(211, 107, 154, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav.nav-box a:hover {
+      background-color: #a83e6f;
+      color: #ffe4e1;
+      box-shadow: 0 6px 16px rgba(168, 62, 111, 0.7);
+    }
+
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    footer {
+      background-color: #ffd6dd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #7a4669;
+      margin-top: 60px;
+      box-shadow: 0 -2px 5px rgba(211,107,154,0.3);
+    }
+
+    footer .social-icons {
+      margin-top: 10px;
+    }
+
+    footer .social-icons a {
+      margin: 0 12px;
+      color: #d36b9a;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+      color: #a83e6f;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #d36b9a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(211,107,154,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+    }
+
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 25px rgba(168,62,111,0.9);
+      transform: scale(1.05);
+    }
+
+    #scrollTopBtn:hover {
+      background: #a83e6f;
+      box-shadow: 0 12px 30px rgba(168,62,111,1);
+      transform: scale(1.1);
+    }
+
+    #social-clock {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1100;
+    }
+
+    #clock {
+      background: #d36b9a;
+      color: white;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+    }
+
+    .social-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+      text-decoration: none;
+      font-size: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icon.facebook { background: #3b5998; }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.instagram { background: #e4405f; }
+    .social-icon.tiktok { background: #0077b5; }
+
+    .social-icon:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+    }
+
+    .about-image img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 10px;
+  padding: 15px 15px 40px 15px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(211, 107, 154, 0.3);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.about-image img::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 80%;
+  height: 10px;
+  background: rgba(211, 107, 154, 0.15);
+  filter: blur(6px);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.about-image img:hover {
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 0 12px 36px rgba(211, 107, 154, 0.5);
+}
+
+
+    .about-text {
+      flex: 1;
+      min-width: 250px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 12px 28px rgba(211,107,154,0.2);
+      border: 4px solid;
+      border-image: linear-gradient(135deg, #d36b9a, #ffe4f0) 1;
+      transition: transform 0.3s ease;
+      max-width: 450px;
+    }
+
+    .about-text:hover {
+      transform: translateY(-5px);
+    }
+
+    .about-text p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2em;
+      color: #a83e6f;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .about-text table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    .about-text td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #f3c5d8;
+      font-size: 1em;
+    }
+
+    .about-text td:first-child {
+      font-weight: bold;
+      color: #555;
+      text-align: left;
+      width: 45%;
+    }
+
+    .about-text td:last-child {
+      text-align: right;
+      color: #333;
+    }
+
+
+.family-section {
+  background: #fffafc;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: #a83e6f;
+  margin-bottom: 40px;
+}
+
+.main-family-photo img {
+  width: 90%;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.caption {
+  font-size: 1em;
+  font-style: italic;
+  margin-top: 10px;
+  color: #666;
+}
+
+.individual-photos {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.member {
+  width: 150px;
+}
+
+.member img {
+  width: 100%;
+  border-radius: 50%;
+  border: 4px solid #ffc8dd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.member p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #a83e6f;
+}
+    #about {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      #about {
+        flex-direction: column;
+      }
+
+      .about-text table {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ABOUT ME</h1>
+    <nav class="nav-box">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT ME</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="favourite.html">FAVOURITE</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+  </header>
+
+  <section id="about" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: center;">
+  <figure class="about-image" style="margin: 0;">
+    <img src="image/amirah.jpg" alt="Gambar Diri" />
+    <figcaption style="text-align: center; margin-top: 10px; font-style: italic; color: #a83e6f; font-weight: 600;">
+      Princess Amirah
+    </figcaption>
+  </figure>
+
+  <div class="about-text" style="max-width: 600px;">
+  <p style="text-align: center; font-size: 1.6em; color: #a83e6f; font-weight: bold; margin-bottom: 20px;">MY BIODATA</p>
+  <table>
+      <tbody>
+        <tr><td>Full Name</td><td>Nurul Amirah Binti Zulkifli</td></tr>
+        <tr><td>Age</td><td>21 years old</td></tr>
+        <tr><td>Date of Birth</td><td>12 June 2004</td></tr>
+        <tr><td>Gender</td><td>Female</td></tr>
+        <tr><td>Education</td><td>Diploma in Information Management</td></tr>
+        <tr><td>University</td><td>Universiti Teknologi MARA (UiTM)</td></tr>
+        <tr><td>Hobbies</td><td>Reading & Eating</td></tr>
+        <tr><td>Favourite Quotes</td><td>"Stay positive, work hard, make it happen"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="family" style="padding: 60px 20px; background: #fff8f0 url('paper-texture.png') repeat; text-align: center;">
+  <h2 style="font-family: 'Pacifico', cursive; font-size: 3em; color: #b76e79; margin-bottom: 50px; text-shadow: 1px 1px 3px #f4d1d9;">
+    My Lovely Family ❤️
+  </h2>
+  
+  
+  <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
+  <div style="max-width: 400px; position: relative; transform: rotate(-1deg); box-shadow: 0 10px 25px rgba(183, 110, 121, 0.4); border-radius: 15px; overflow: hidden;">
+    <img src="image/family1.jpg" alt="Family Group 1" style="width: 100%; display: block; border-radius: 15px;" />
+    <div style="position: absolute; top: 10px; left: 50%; width: 120px; height: 24px; background: #f5d1d6; border-radius: 6px; box-shadow: 0 3px 5px rgba(0,0,0,0.15); transform: translateX(-50%) rotate(-5deg);"></div>
+  </div>
+  
+  <div style="max-width: 400px; position: relative; transform: rotate(2deg); box-shadow: 0 10px 25px rgba(183, 110, 121, 0.4); border-radius: 15px; overflow: hidden;">
+    <img src="image/family2.jpg" alt="Family Group 2" style="width: 100%; display: block; border-radius: 15px;" />
+    <div style="position: absolute; top: 10px; left: 50%; width: 120px; height: 24px; background: #f5d1d6; border-radius: 6px; box-shadow: 0 3px 5px rgba(0,0,0,0.15); transform: translateX(-50%) rotate(3deg);"></div>
+  </div>
+</div>
+
+ 
+<div class="family-members" style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+  <div class="member" style="width: 150px; background: #fff0f3; padding: 15px; border-radius: 18px; box-shadow: 3px 5px 12px rgba(183, 110, 121, 0.3); font-family: 'Shadows Into Light', cursive; transform: rotate(-3deg); position: relative;">
+    <img src="image/abah.jpg" alt="abah" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(183,110,121,0.4);" />
+    <p style="margin: 10px 0 0 0; font-size: 1.2em; color: #b76e79; font-weight: 700; text-shadow: 1px 1px 2px #f9d7de;">My Father ❤️</p>
+    <p style="font-size: 0.8em; color: #ad7d86; font-style: italic; margin-top: 4px;">"Our protector and greatest supporter"</p>
+  </div>
+  <div class="member" style="width: 150px; background: #fff0f3; padding: 15px; border-radius: 18px; box-shadow: 3px 5px 12px rgba(183, 110, 121, 0.3); font-family: 'Shadows Into Light', cursive; transform: rotate(2deg); position: relative;">
+    <img src="image/mama.jpg" alt="mama" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(183,110,121,0.4);" />
+    <p style="margin: 10px 0 0 0; font-size: 1.2em; color: #b76e79; font-weight: 700; text-shadow: 1px 1px 2px #f9d7de;">My Mother ❤️</p>
+    <p style="font-size: 0.8em; color: #ad7d86; font-style: italic; margin-top: 4px;">"Our family's heart and strength"</p>
+  </div>
+  <div class="member" style="width: 150px; background: #fff0f3; padding: 15px; border-radius: 18px; box-shadow: 3px 5px 12px rgba(183, 110, 121, 0.3); font-family: 'Shadows Into Light', cursive; transform: rotate(-2deg); position: relative;">
+    <img src="image/kakak.jpg" alt="kakak" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(183,110,121,0.4);" />
+    <p style="margin: 10px 0 0 0; font-size: 1.2em; color: #b76e79; font-weight: 700; text-shadow: 1px 1px 2px #f9d7de;">My Sister ❤️</p>
+    <p style="font-size: 0.8em; color: #ad7d86; font-style: italic; margin-top: 4px;">"Forever my guide and friend"</p>
+  </div>
+  <div class="member" style="width: 150px; background: #fff0f3; padding: 15px; border-radius: 18px; box-shadow: 3px 5px 12px rgba(183, 110, 121, 0.3); font-family: 'Shadows Into Light', cursive; transform: rotate(1deg); position: relative;">
+    <img src="image/myself.jpg" alt="amirah" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(183,110,121,0.4);" />
+    <p style="margin: 10px 0 0 0; font-size: 1.2em; color: #b76e79; font-weight: 700; text-shadow: 1px 1px 2px #f9d7de;">MySelf ❤️</p>
+    <p style="font-size: 0.8em; color: #ad7d86; font-style: italic; margin-top: 4px;">"Proud to be part of this loving family"</p>
+  </div>
+  <div class="member" style="width: 150px; background: #fff0f3; padding: 15px; border-radius: 18px; box-shadow: 3px 5px 12px rgba(183, 110, 121, 0.3); font-family: 'Shadows Into Light', cursive; transform: rotate(-1deg); position: relative;">
+    <img src="image/adik.jpg" alt="adik" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(183,110,121,0.4);" />
+    <p style="margin: 10px 0 0 0; font-size: 1.2em; color: #b76e79; font-weight: 700; text-shadow: 1px 1px 2px #f9d7de;">My Brother</p>
+    <p style="font-size: 0.8em; color: #ad7d86; font-style: italic; margin-top: 4px;">"Our little bundle of happiness"</p>
+  </div>
+</div>
+
+  <div id="social-clock">
+    <div id="clock"></div>
+    <a href="https://www.facebook.com/share/16JvW1c2SA/" target="_blank" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/nrlmiraaa4?t=oIiUersapnwfP5vV6MqV7Q&s=09" target="_blank" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/nrlamirahhhh?igsh=MWM1NnZ6a3BmaXd2eQ==" target="_blank" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@namirazzzz?_t=ZS-8wV0RT7lpoG&_r=1" target="_blank" class="social-icon tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NURUL AMIRAH ZULKIFLI. All Rights Reserved.</p>
+    <div class="social-icons" aria-label="Social Media Links">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" title="Ke atas" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const strTime = [
+        hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0'),
+        seconds.toString().padStart(2, '0')
+      ].join(':') + ' ' + ampm;
+      document.getElementById('clock').textContent = strTime;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
+

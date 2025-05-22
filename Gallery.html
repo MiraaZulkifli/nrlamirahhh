@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: url('image/bg3.jpg') center/cover no-repeat;
+      padding: 120px 20px 100px 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: visible;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(211, 107, 154, 0.6);
+      z-index: 0;
+      filter: blur(4px);
+    }
+    header h1 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.2em;
+      margin: 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+    nav.nav-box {
+      position: relative;
+      margin: 30px auto 0 auto;
+      display: inline-flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 12px 28px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(211, 107, 154, 0.35);
+      z-index: 2;
+    }
+    nav.nav-box a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background-color: rgba(211, 107, 154, 0.65);
+      box-shadow: 0 4px 8px rgba(211, 107, 154, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav.nav-box a:hover {
+      background-color: #a83e6f;
+      color: #ffe4e1;
+      box-shadow: 0 6px 16px rgba(168, 62, 111, 0.7);
+    }
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    <style>
+  .flip-card {
+  background-color: transparent;
+  width: 100%;
+  max-width: 300px; 
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  padding-top: 66.66%; /* 16:9 aspect ratio untuk video */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(211, 107, 154, 0.3);
+}
+
+.flip-card-front img,
+.flip-card-front video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flip-card-back {
+  background-color: #fff0f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  font-style: italic;
+  color: #a83e6f;
+  padding: 20px;
+  text-align: center;
+}
+
+    footer {
+      background-color: #ffd6dd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #7a4669;
+      margin-top: 60px;
+      box-shadow: 0 -2px 5px rgba(211,107,154,0.3);
+    }
+    footer .social-icons {
+      margin-top: 10px;
+    }
+    footer .social-icons a {
+      margin: 0 12px;
+      color: #d36b9a;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    footer .social-icons a:hover {
+      color: #a83e6f;
+    }
+    /* Scroll Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #d36b9a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(211,107,154,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 25px rgba(168,62,111,0.9);
+      transform: scale(1.05);
+    }
+    #scrollTopBtn:hover {
+      background: #a83e6f;
+      box-shadow: 0 12px 30px rgba(168,62,111,1);
+      transform: scale(1.1);
+    }
+    /* Floating social icons and clock */
+    #social-clock {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1100;
+      font-family: 'Poppins', sans-serif;
+    }
+    #clock {
+      background: #d36b9a;
+      color: white;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+    }
+    .social-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+      text-decoration: none;
+      font-size: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .social-icon.facebook { background: #3b5998; }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.instagram { background: #e4405f; }
+    .social-icon.tiktok { background: #0077b5; }
+    .social-icon:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MY GALLERY</h1>
+    <nav class="nav-box">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT ME</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="favourite.html">FAVOURITE</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+  </header>
+
+  <section id="gallery" style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+  <h2 style="text-align:center; font-family: 'Dancing Script', cursive; font-size: 2.8em; color: #a83e6f; margin-bottom: 40px;">
+    "Smiles, stories, and shared memories"
+  </h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px;">
+
+       <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/1.jpg" alt="Myself❤️">
+        </div>
+        <div class="flip-card-back">Myself❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/2.jpg" alt="My Roomate❤️">
+        </div>
+        <div class="flip-card-back">My Roomate❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/3.jpg" alt="My Internship Friend❤️">
+        </div>
+        <div class="flip-card-back">My Internship Friend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/4.jpg" alt="My Everything❤️">
+        </div>
+        <div class="flip-card-back">My Everthing❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/5.jpg" alt="My Lovely Friend❤️">
+        </div>
+        <div class="flip-card-back">My Friend Amaany ❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/6.jpg" alt="My Classmate ❤️">
+        </div>
+        <div class="flip-card-back">My Classmate❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/7.jpg" alt="Myself❤️">
+        </div>
+        <div class="flip-card-back">Myself❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/8.jpg" alt="My Sibling❤️">
+        </div>
+        <div class="flip-card-back">My Sibling❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/9.jpg" alt="My School Friend❤️">
+        </div>
+        <div class="flip-card-back">My School Friend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/10.jpg" alt="My Bestie❤️">
+        </div>
+        <div class="flip-card-back">My Bestie❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/11.jpg" alt="My Lovely Friend❤️">
+        </div>
+        <div class="flip-card-back">My Friend Lynn❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/12.jpg" alt="My Diploma Friend❤️">
+        </div>
+        <div class="flip-card-back">My Diploma Friend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/13.jpg" alt="My School Friend❤️">
+        </div>
+        <div class="flip-card-back">My School Friend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/14.jpg" alt="My Everything❤️">
+        </div>
+        <div class="flip-card-back">My Everything❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/15.jpg" alt="My Everthing❤️">
+        </div>
+        <div class="flip-card-back">My Everything❤️</div>
+      </div>
+    </div>
+    
+     <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/16.jpg" alt="My Friend Salfieni❤️">
+        </div>
+        <div class="flip-card-back">My Friend Salfieni❤️</div>
+      </div>
+    </div>
+ 
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/17.jpg" alt="My Lovely Friend❤️">
+        </div>
+        <div class="flip-card-back">My Lovely Friend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/18.jpg" alt="My Family❤️">
+        </div>
+        <div class="flip-card-back">My Family❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/19.jpg" alt="My Bestfriend❤️">
+        </div>
+        <div class="flip-card-back">My Bestfriend❤️</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/20.jpg" alt="My Lovely Classmate❤️">
+        </div>
+        <div class="flip-card-back">My Lovely Classmate❤️</div>
+      </div>
+    </div>
+
+   <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/21.jpg" alt="My Bestfriend❤️">
+        </div>
+        <div class="flip-card-back">My Bestfriend❤️</div>
+      </div>
+    </div>
+
+   <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/22.jpg" alt="My Lovely Classmate❤️">
+        </div>
+        <div class="flip-card-back">My Lovely Classmate❤️</div>
+      </div>
+    </div>
+
+   <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="image/23.jpg" alt="My School Friend❤️">
+        </div>
+        <div class="flip-card-back">My School Friend❤️</div>
+      </div>
+    </div>
+
+
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <video src="audio/video1.mp4" autoplay muted loop></video>
+      </div>
+      <div class="flip-card-back">
+        Little bites, big memories❤️
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <video src="audio/video2.mp4" autoplay muted loop></video>
+      </div>
+      <div class="flip-card-back">
+        Raya moments with my forever best friend❤️
+      </div>
+    </div>
+  </div>
+   </section>
+
+  <div id="social-clock">
+    <div id="clock"></div>
+    <a href="https://www.facebook.com/share/16JvW1c2SA/" target="_blank" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/nrlmiraaa4?t=oIiUersapnwfP5vV6MqV7Q&s=09" target="_blank" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/nrlamirahhhh?igsh=MWM1NnZ6a3BmaXd2eQ==" target="_blank" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@namirazzzz?_t=ZS-8wV0RT7lpoG&_r=1" target="_blank" class="social-icon tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2025 NURUL AMIRAH ZULKIFLI. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const strTime = [
+        hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0'),
+        seconds.toString().padStart(2, '0')
+      ].join(':') + ' ' + ampm;
+      document.getElementById('clock').textContent = strTime;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html> 
+
+
+

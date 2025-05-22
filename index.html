@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laman Saya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #ffd6dd;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(211,107,154,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8em;
+      color: #d36b9a;
+      margin: 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 18px;
+      text-decoration: none;
+      color: #d36b9a;
+      font-weight: 600;
+      font-size: 1.1em;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.3s ease;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #d36b9a;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+    nav a:hover {
+      color: #a83e6f;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 90px 20px 80px 20px;
+      border-radius: 20px;
+      max-width:600px;
+      margin: 30px auto;
+      box-shadow: 0 6px 10px rgba(211,107,154,0.2);
+      animation: fadeInUp 1.2s ease forwards;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+      min-height: 400px;
+    }
+
+    .hero h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.25em;
+      max-width: 700px;
+      margin: 0 auto 35px auto;
+      line-height: 1.7;
+      padding: 0 10px;
+    }
+
+    .hero .btn {
+      background-color: #fff;
+      color: #d36b9a;
+      padding: 14px 36px;
+      font-weight: bold;
+      font-size: 1.1em;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      display: inline-block;
+    }
+
+    .hero .btn:hover {
+      background-color: #d36b9a;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(255,255,255,0.6);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(211,107,154,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    section:hover {
+      box-shadow: 0 12px 30px rgba(211,107,154,0.2);
+    }
+
+    h3 {
+      color: #d36b9a;
+      margin-bottom: 18px;
+      font-weight: 600;
+      border-bottom: 2px solid #d36b9a;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+
+    footer {
+      background-color: #ffd6dd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #7a4669;
+      margin-top: 60px;
+      box-shadow: 0 -2px 5px rgba(211,107,154,0.3);
+    }
+    footer .social-icons {
+      margin-top: 10px;
+    }
+    footer .social-icons a {
+      margin: 0 12px;
+      color: #d36b9a;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    footer .social-icons a:hover {
+      color: #a83e6f;
+    }
+    footer .social-icons a[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d36b9a;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 0.85em;
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 3px 10px rgba(168,62,111,0.5);
+      z-index: 10;
+    }
+    footer .social-icons a[data-tooltip]::after {
+      opacity: 0;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #d36b9a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(211,107,154,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+    }
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 10px 25px rgba(168,62,111,0.9);
+      transform: scale(1.1);
+    }
+    #scrollTopBtn:hover {
+      background: #a83e6f;
+      box-shadow: 0 12px 30px rgba(168,62,111,1);
+      transform: scale(1.15);
+      transition: all 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    #social-clock {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 1100;
+      font-family: 'Poppins', sans-serif;
+    }
+    #clock {
+      background: #d36b9a;
+      color: white;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+    }
+    .social-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211,107,154,0.7);
+      text-decoration: none;
+      font-size: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .social-icon.facebook { background: #3b5998; }
+    .social-icon.twitter { background: #1da1f2; }
+    .social-icon.instagram { background: #e4405f; }
+    .social-icon.tiktok { background: #0077b5; }
+    .social-icon:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MY WEBSITE</h1>
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT ME</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="favourite.html">FAVOURITE</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h2>WELCOME!</h2>
+      <p>Hi, I’m Princess Amirah. This is my space to dream, create, and share what matters most. Thanks for being here!</p>
+      <a href="about.html" class="btn">About Me</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 NURUL AMIRAH ZULKIFLI. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+
+  <div id="social-clock">
+    <div id="clock"></div>
+    <a href="https://www.facebook.com/share/16JvW1c2SA/" target="_blank" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/nrlmiraaa4?t=oIiUersapnwfP5vV6MqV7Q&s=09" target="_blank" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/nrlamirahhhh?igsh=MWM1NnZ6a3BmaXd2eQ==" target="_blank" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@namirazzzz?_t=ZS-8wV0RT7lpoG&_r=1" target="_blank" class="social-icon tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const strTime = [
+        hours.toString().padStart(2, '0'),
+        minutes.toString().padStart(2, '0'),
+        seconds.toString().padStart(2, '0')
+      ].join(':') + ' ' + ampm;
+      document.getElementById('clock').textContent = strTime;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+const hero = document.querySelector('.hero');
+const bgImages = ['image/amirah1.jpg','image/amirah2.jpg','image/amirah3.jpg','image/amirah4.jpg','image/amirah5.jpg','image/amirah6.jpg','image/amirah7.jpg','image/amirah8.jpg','image/amirah9.jpg','image/amirah10.jpg','image/amirah11.jpg','image/amirah12.jpg'];
+let bgIndex = 0;
+
+function changeHeroBackground() {
+  hero.style.backgroundImage = `linear-gradient(rgba(211, 107, 154, 0.7), rgba(211, 107, 154, 0.7)), url('${bgImages[bgIndex]}')`;
+  bgIndex = (bgIndex + 1) % bgImages.length;
+}
+
+// Tukar gambar setiap 5 saat
+setInterval(changeHeroBackground, 5000);
+
+// Mula dengan gambar pertama bila page load
+changeHeroBackground();
+</script>
+</body>
+</html>
+
